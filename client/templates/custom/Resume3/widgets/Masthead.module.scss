@@ -1,0 +1,37 @@
+.header {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  background: #f8f8f8;
+  width: 100%;
+  left: 0;
+  padding: 20px;
+  .whiteText {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+}
+.whiteColor {
+  color: #ffffff;
+}
+.summary {
+  margin-top: 100px;
+}
+.mainTitle {
+  font-size: 30px;
+  font-weight: 600;
+  position: relative;
+  margin-bottom: 20px;
+  display: flex;
+  text-transform: uppercase;
+}
+.mainTitleInner {
+  display: flex;
+  padding-right: 20px;
+  background: #fff;
+  z-index: 1;
+  span {
+    border-bottom: 1px solid;
+    padding-bottom: 5px;
+  }
+}

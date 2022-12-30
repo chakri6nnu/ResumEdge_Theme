@@ -1,0 +1,50 @@
+.container {
+  @apply h-screen w-[95vw] md:w-[50vw] lg:w-[50vw] xl:w-[50vw] 2xl:w-[50vw];
+  @apply bg-neutral-50 text-neutral-900 dark:bg-darkBaseColor dark:text-neutral-50;
+  @apply relative flex border-r-2 border-neutral-50/10;
+  .hidden {
+    display: none !important;
+  }
+  .mainmenu {
+    @apply h-screen w-[95vw] md:w-[10vw] lg:w-[10vw] xl:w-[10vw] 2xl:w-[10vw];
+  }
+  nav {
+    @apply absolute inset-y-0 left-[9.8vw];
+    @apply w-14 py-4 md:w-16 md:px-2;
+    @apply bg-neutral-100 shadow dark:bg-darkHighlight;
+    @apply flex flex-col items-center justify-between;
+
+    hr {
+      @apply mt-2;
+    }
+
+    > div {
+      @apply grid gap-2;
+    }
+
+    .sections svg {
+      @apply opacity-75 transition-opacity hover:opacity-100;
+    }
+  }
+
+  main {
+    @apply overflow-y-scroll pl-12 pr-12 pt-4;
+    @apply absolute inset-y-0 left-12 right-0 md:left-[13vw];
+
+    > section {
+      @apply grid gap-4;
+      @apply pt-5 pb-7 first:pt-0;
+      @apply border-b border-neutral-900/10 last:border-b-0 dark:border-neutral-50/10;
+
+      hr {
+        @apply my-2;
+      }
+    }
+
+    -ms-overflow-style: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+}

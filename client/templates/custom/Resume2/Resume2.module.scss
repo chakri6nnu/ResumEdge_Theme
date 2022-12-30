@@ -1,0 +1,56 @@
+.page {
+  @apply h-full;
+  .resume10 {
+    img.object-cover {
+      z-index: 2;
+    }
+  }
+
+  a {
+    @apply font-semibold;
+  }
+}
+
+.container {
+  word-break: break-word;
+
+  @apply grid h-full grid-cols-6;
+
+  .main {
+    @apply col-span-4 flex flex-col;
+
+    .inner {
+      @apply flex h-full flex-col gap-4 p-4;
+    }
+  }
+
+  .sidebar {
+    @apply col-span-2 flex h-full flex-col;
+    position: relative;
+    .inner {
+      @apply flex h-full flex-col gap-4 p-4;
+    }
+  }
+  .sidebar:before {
+    content: '';
+    position: absolute;
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 20px 20px 0;
+    border-color: transparent #fff transparent transparent;
+    right: -1px;
+    top: 0;
+    z-index: 1;
+  }
+  .sidebar:after {
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 20px;
+    background: #e5d9db;
+    right: 0;
+    top: 0;
+  }
+}

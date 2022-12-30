@@ -1,0 +1,58 @@
+.timeline {
+  display: flex;
+  .timePeriod {
+    padding-right: 20px;
+    width: 90px;
+    padding-bottom: 10px;
+    text-align: center;
+  }
+  .ritDetails {
+    width: calc(100% - 20px);
+    padding-left: 30px;
+    border-left: 1px solid #000;
+    position: relative;
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      margin-bottom: 10px;
+      .title {
+        font-size: 20px;
+        font-weight: 700;
+        position: relative;
+        padding-left: 00px;
+        margin-bottom: 10px;
+        text-transform: uppercase;
+      }
+      .subTitle {
+        font-size: 14px;
+        position: relative;
+        padding-left: 00px;
+        margin-bottom: 10px;
+        text-transform: uppercase;
+      }
+    }
+  }
+}
+.description {
+  padding-left: 0;
+  .list-outside ul {
+    margin-left: 20px;
+    li {
+      list-style-position: outside;
+    }
+  }
+}
+.duration:nth-child(2) .ritDetails:before {
+  top: 0;
+}
+.duration .ritDetails:before {
+  content: '';
+  position: absolute;
+  left: -6px;
+  height: 10px;
+  width: 10px;
+  border: 1px solid #000;
+  border-radius: 50%;
+  background: #000;
+}

@@ -1,0 +1,26 @@
+.summary {
+  margin-top: 40px;
+}
+h3.sidebar::after {
+  content: '';
+  position: absolute;
+  background: #a5a5a5;
+  top: 6px;
+  right: -18px;
+  width: 20px;
+  height: 100%;
+  z-index: 1;
+  transform: skewY(35deg);
+}
+h3.nonslider:after {
+  content: '';
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 35px 35px 0;
+  border-color: transparent #fff transparent transparent;
+}

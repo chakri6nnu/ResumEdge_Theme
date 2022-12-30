@@ -1,0 +1,40 @@
+.header {
+  z-index: 2;
+  background: yellow;
+  width: 107.5%;
+  /* position: absolute; */
+  padding: 30px 15px;
+  margin-left: -20px;
+  .whiteText {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+}
+.whiteColor {
+  color: #ffffff;
+}
+.summary {
+  margin-bottom: 40px;
+}
+
+.mainTitle {
+  font-size: 30px;
+  font-weight: 600;
+  position: relative;
+  margin-bottom: 20px;
+  display: flex;
+  text-transform: uppercase;
+  justify-content: space-between !important;
+  .mainTitleInner {
+    padding-right: 20px;
+    z-index: 1;
+  }
+
+  .mainTitleInnerBar {
+    border-bottom: 1px solid #ffffff;
+    margin: 0;
+    padding: 0;
+    margin-top: -5px;
+    flex-grow: 1 !important;
+  }
+}

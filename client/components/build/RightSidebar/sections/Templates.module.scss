@@ -1,0 +1,23 @@
+.container {
+  @apply grid grid-cols-4 gap-4;
+}
+
+.template {
+  @apply grid text-center;
+
+  .preview {
+    aspect-ratio: 1 / 1.4142;
+
+    @apply relative grid rounded;
+    @apply border-4 border-transparent;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+
+    &.selected {
+      @apply border-yellow-500;
+    }
+  }
+
+  .label {
+    @apply mt-1 text-xs font-medium;
+  }
+}
