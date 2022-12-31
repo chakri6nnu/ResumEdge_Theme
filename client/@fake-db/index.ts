@@ -20,3 +20,4 @@ import './server-side-menu/horizontal';
 import mock from './mock';
 
 mock.onAny().passThrough();
+//reset

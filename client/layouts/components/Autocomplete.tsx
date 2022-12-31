@@ -14,7 +14,7 @@ import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import useMediaQuery from '@mui/material/useMediaQuery';
 // ** Third Party Imports
-import axios from 'axios';
+// import axios from 'axios';
 // ** Next Imports
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -372,17 +372,17 @@ const AutocompleteComponent = ({ hidden, settings }: Props) => {
 
   // Get all data using API
   useEffect(() => {
-    axios
-      .get('/app-bar/search', {
-        params: { q: searchValue },
-      })
-      .then((response) => {
-        if (response.data && response.data.length) {
-          setOptions(response.data);
-        } else {
-          setOptions([]);
-        }
-      });
+    // axios
+    //   .get('/app-bar/search', {
+    //     params: { q: searchValue },
+    //   })
+    //   .then((response) => {
+    //     if (response.data && response.data.length) {
+    //       setOptions(response.data);
+    //     } else {
+    //       setOptions([]);
+    //     }
+    //   });
   }, [searchValue]);
 
   useEffect(() => {

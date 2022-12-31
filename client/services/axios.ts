@@ -14,9 +14,8 @@ export type ServerError = {
 };
 
 const baseURL = env('SERVER_URL') || '/api';
-const axios = _axios.create({ baseURL });
-
-axios.interceptors.request.use((config) => {
+const axiosRoot = _axios.create({ baseURL });
+axiosRoot.interceptors.request.use((config:any) => {
   const { accessToken } = store.getState().auth;
 
   config.headers = {
@@ -27,7 +26,7 @@ axios.interceptors.request.use((config) => {
   return config;
 });
 
-axios.interceptors.response.use(
+axiosRoot.interceptors.response.use(
   (response) => response,
   (error) => {
     const { response } = error;
@@ -48,4 +47,4 @@ axios.interceptors.response.use(
   }
 );
 
-export default axios;
+export default axiosRoot;

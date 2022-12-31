@@ -14,6 +14,8 @@ import { useRouter } from 'next/router';
 import NotAuthorized from 'pages/401';
 import { ReactNode, useState } from 'react';
 
+import { useAppSelector } from '@/store/hooks';
+
 interface AclGuardProps {
   children: ReactNode;
   guestGuard: boolean;
@@ -29,15 +31,15 @@ const AclGuard = (props: AclGuardProps) => {
   // ** Hooks
   const auth = useAuth();
   const router = useRouter();
-
+  const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn);
   // If guestGuard is true and user is not logged in or its an error page, render the page without checking access
   if (guestGuard || router.route === '/404' || router.route === '/500' || router.route === '/') {
     return <>{children}</>;
   }
 
   // User is logged in, build ability for the user based on his role
-  if (auth.user && auth.user.role && !ability) {
-    setAbility(buildAbilityFor(auth.user.role, aclAbilities.subject));
+  if (isLoggedIn && !ability) {
+    setAbility(buildAbilityFor('admin', aclAbilities.subject));
   }
 
   // Check the access of current user and render pages

@@ -16,3 +16,5 @@ const icons: IconsDataType[] = [
 mock.onGet('/api/icons/data').reply(() => {
   return [200, icons];
 });
+
+//reset

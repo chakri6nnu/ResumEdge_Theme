@@ -2,7 +2,7 @@
 // ** Config Imports
 import '../configs/i18n'
 // ** Fake-DB Import
-import '../@fake-db'
+//import '../@fake-db'
 // ** Prismjs Styles
 import 'prismjs'
 import 'prismjs/themes/prism-tomorrow.css'
@@ -12,11 +12,15 @@ import 'prismjs/components/prism-tsx'
 import 'react-perfect-scrollbar/dist/css/styles.css'
 import '../iconify-bundle/icons-bundle-react'
 
+import env from '@beam-australia/react-env'
+import DayjsAdapter from '@date-io/dayjs';
 // ** Global css styles
 // import '../../styles/globals.css'
 import type { EmotionCache } from '@emotion/cache'
 // ** Emotion Imports
 import { CacheProvider } from '@emotion/react'
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { GoogleOAuthProvider } from '@react-oauth/google'
 import type { NextPage } from 'next'
 import type { AppProps } from 'next/app'
 // ** Next Imports
@@ -27,10 +31,13 @@ import NProgress from 'nprogress'
 import { ReactNode } from 'react'
 // ** Third Party Import
 import { Toaster } from 'react-hot-toast'
+import { QueryClientProvider } from 'react-query';
 import { Provider } from 'react-redux'
+import { PersistGate } from 'redux-persist/integration/react'
 
+import queryClient from '@/services/react-query';
 // ** Store Imports
-import store from '@/store/index';
+import store, { persistor } from '@/store/index';
 
 import AclGuard from '../@core/components/auth/AclGuard'
 import AuthGuard from '../@core/components/auth/AuthGuard'
@@ -50,6 +57,7 @@ import themeConfig from '../configs/themeConfig'
 import { AuthProvider } from '../context/AuthContext'
 // ** Component Imports
 import UserLayout from '../layouts/UserLayout'
+import ModalWrapper from '../modals'
 
 // ** Extend App Props with Emotion
 type ExtendedAppProps = AppProps & {
@@ -104,7 +112,7 @@ const App = (props: ExtendedAppProps) => {
   const guestGuard = Component.guestGuard ?? false
 
   const aclAbilities = Component.acl ?? defaultACLObj
-
+  console.log(env('GOOGLE_CLIENT_ID'));
   return (
     <Provider store={store}>
       <CacheProvider value={emotionCache}>
@@ -119,26 +127,36 @@ const App = (props: ExtendedAppProps) => {
         </Head>
 
         <AuthProvider>
+        <LocalizationProvider dateAdapter={DayjsAdapter}>
+        <PersistGate loading={null} persistor={persistor}>
           <SettingsProvider {...(setConfig ? { pageSettings: setConfig() } : {})}>
             <SettingsConsumer>
+          
               {({ settings }) => {
                 return (
-                  <ThemeComponent settings={settings}>
-                    <WindowWrapper>
-                      <Guard authGuard={authGuard} guestGuard={guestGuard}>
-                        <AclGuard aclAbilities={aclAbilities} guestGuard={guestGuard}>
-                          {getLayout(<Component {...pageProps} />)}
-                        </AclGuard>
-                      </Guard>
-                    </WindowWrapper>
-                    <ReactHotToast>
-                      <Toaster position={settings.toastPosition} toastOptions={{ className: 'react-hot-toast' }} />
-                    </ReactHotToast>
-                  </ThemeComponent>
+                  <GoogleOAuthProvider clientId={env('GOOGLE_CLIENT_ID')}>
+                    <QueryClientProvider client={queryClient}>
+                      <ThemeComponent settings={settings}>
+                        <WindowWrapper>
+                        <ModalWrapper />
+                          <Guard authGuard={authGuard} guestGuard={guestGuard}>
+                            <AclGuard aclAbilities={aclAbilities} guestGuard={guestGuard}>
+                              {getLayout(<Component {...pageProps} />)}
+                            </AclGuard>
+                          </Guard>
+                        </WindowWrapper>
+                        <ReactHotToast>
+                          <Toaster position={settings.toastPosition} toastOptions={{ className: 'react-hot-toast' }} />
+                        </ReactHotToast>
+                      </ThemeComponent>
+                    </QueryClientProvider>
+                  </GoogleOAuthProvider>
                 )
               }}
             </SettingsConsumer>
           </SettingsProvider>
+          </PersistGate>
+          </LocalizationProvider>
         </AuthProvider>
       </CacheProvider>
     </Provider>

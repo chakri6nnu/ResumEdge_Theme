@@ -1,9 +1,10 @@
 // ** React Imports
 // ** Hooks Import
-import { useAuth } from 'hooks/useAuth';
 // ** Next Import
 import { useRouter } from 'next/router';
 import { ReactElement, ReactNode, useEffect } from 'react';
+
+import { useAppSelector } from '@/store/hooks';
 
 interface AuthGuardProps {
   children: ReactNode;
@@ -12,16 +13,15 @@ interface AuthGuardProps {
 
 const AuthGuard = (props: AuthGuardProps) => {
   const { children, fallback } = props;
-  const auth = useAuth();
   const router = useRouter();
-
+  const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn);
   useEffect(
     () => {
       if (!router.isReady) {
         return;
       }
 
-      if (auth.user === null && !window.localStorage.getItem('userData')) {
+      if (!isLoggedIn) {
         if (router.asPath !== '/') {
           router.replace({
             pathname: '/login',
@@ -36,7 +36,7 @@ const AuthGuard = (props: AuthGuardProps) => {
     [router.route]
   );
 
-  if (auth.loading || auth.user === null) {
+  if (!isLoggedIn) {
     return fallback;
   }
 

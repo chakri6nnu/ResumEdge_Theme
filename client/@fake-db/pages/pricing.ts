@@ -163,3 +163,5 @@ const data: PricingDataType = {
 };
 
 mock.onGet('/pages/pricing').reply(() => [200, data]);
+
+//reset

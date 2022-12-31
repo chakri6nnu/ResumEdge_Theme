@@ -1,5 +1,5 @@
 // ** Mock Adapter
-import mock from './../mock';
+//import mock from './../mock';
 // ** Types
 import { AutocompleteType } from './../types';
 
@@ -359,4 +359,6 @@ export const countries = [
 ];
 
 // ** Get Data
-mock.onGet('/forms/autocomplete').reply(() => [200, top100Films]);
+//mock.onGet('/forms/autocomplete').reply(() => [200, top100Films]);
+
+//reset

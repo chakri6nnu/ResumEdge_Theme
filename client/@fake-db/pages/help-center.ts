@@ -652,3 +652,5 @@ mock.onGet('/pages/help-center/article').reply((config) => {
 
   return [200, { activeArticle, activeSubcategory, categories: data.categories, articles: activeSubcategory.articles }];
 });
+
+//reset

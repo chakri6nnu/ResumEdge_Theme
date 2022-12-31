@@ -181,3 +181,5 @@ mock.onGet('/pages/faqs').reply((config) => {
     return [200, data];
   }
 });
+
+//reset

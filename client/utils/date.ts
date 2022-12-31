@@ -20,7 +20,10 @@ export const dateFormatOptions: string[] = [
   'YYYY',
 ];
 
-export const getRelativeTime = (timestamp: dayjs.ConfigType): string => dayjs(timestamp).utc().toNow(true);
+export const getRelativeTime = (timestamp: any): string => {
+  return new Date(timestamp).toLocaleDateString();
+  //return dayjs(timestamp).utc().toNow(true);
+}
 
 export const formatDateString = (date: string | DateRange, formatStr: string): string | null => {
   const presentString = i18n?.t<string>('common.date.present') ?? '';

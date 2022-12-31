@@ -1,5 +1,4 @@
 import { Add, ImportExport } from '@mui/icons-material';
-import type { NextPage } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
 import { useTranslation } from 'next-i18next';
@@ -22,7 +21,7 @@ import styles from '@/styles/pages/Dashboard.module.scss';
 //   },
 // });
 
-const Dashboard: NextPage = () => {
+const Dashboard = () => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const theme = useAppSelector((state) => state.build.theme);
@@ -71,5 +70,6 @@ const Dashboard: NextPage = () => {
     </div>
   );
 };
+//Dashboard.getLayout = (page: ReactNode) => <BlankLayout>{page}</BlankLayout>;
 
 export default Dashboard;
